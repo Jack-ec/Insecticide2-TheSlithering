@@ -60,7 +60,9 @@ public class MenuState extends GameState {
 	private void select() {
 		if(currentChoice == 0) {
 			// start
+			gsm.setState(GameStateManager.LEVEL1STATE);
 		}
+		// quit
 		if(currentChoice == 1) {
 			System.exit(0);
 		}
