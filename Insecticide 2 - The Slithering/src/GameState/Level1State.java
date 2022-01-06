@@ -1,10 +1,9 @@
 package GameState;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-
 import Main.GamePanel;
 import TileMap.*;
+
+import java.awt.*;
 
 public class Level1State extends GameState {
 	
@@ -14,16 +13,19 @@ public class Level1State extends GameState {
 		this.gsm = gsm;
 		init();
 	}
-
+	
 	public void init() {
 		
 		tileMap = new TileMap(30);
 		tileMap.loadTiles("/Tilesets/GrassTileSet.gif");
 		tileMap.loadMap("/Maps/level1-1.map");
 		tileMap.setPosition(0, 0);
+		
 	}
-	public void update() {
-	}
+	
+	
+	public void update() {}
+	
 	public void draw(Graphics2D g) {
 		
 		// clear screen
@@ -31,10 +33,12 @@ public class Level1State extends GameState {
 		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
 		
 		// draw tilemap
+		tileMap.draw(g);
+		
 	}
-	public void keyPressed(int k) {
-	}
-	public void keyReleased(int k) {
-	}
-
+	
+	public void keyPressed(int k) {}
+	
+	public void keyReleased(int k) {}
+	
 }
