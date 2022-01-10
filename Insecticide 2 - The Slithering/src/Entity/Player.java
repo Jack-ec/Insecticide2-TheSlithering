@@ -31,9 +31,6 @@ public class Player extends MapObject {
 	private int scratchDamage;
 	private int scratchRange;
 	
-	// gliding
-	private boolean gliding;
-	
 	// animations
 	private ArrayList<BufferedImage[]> sprites;
 	private final int[] numFrames = {
@@ -45,7 +42,6 @@ public class Player extends MapObject {
 	private static final int WALKING = 1;
 	private static final int JUMPING = 2;
 	private static final int FALLING = 3;
-	private static final int GLIDING = 4;
 	private static final int FIREBALL = 5;
 	private static final int SCRATCHING = 6;
 	
@@ -146,9 +142,6 @@ public class Player extends MapObject {
 	}
 	public void setScratching() {
 		scratching = true;
-	}
-	public void setGliding(boolean b) { 
-		gliding = b;
 	}
 	
 	public void checkAttack(ArrayList<Enemy> enemies) {
@@ -256,8 +249,8 @@ public class Player extends MapObject {
 		// falling
 		if(falling) {
 			
-			if(dy > 0 && gliding) dy += fallSpeed * 0.1;
-			else dy += fallSpeed;
+			
+			dy += fallSpeed;
 			
 			if(dy > 0) jumping = false;
 			if(dy < 0 && !jumping) dy += stopJumpSpeed;
@@ -332,15 +325,7 @@ public class Player extends MapObject {
 			}
 		}
 		else if(dy > 0) {
-			if(gliding) {
-				if(currentAction != GLIDING) {
-					currentAction = GLIDING;
-					animation.setFrames(sprites.get(GLIDING));
-					animation.setDelay(100);
-					width = 30;
-				}
-			}
-			else if(currentAction != FALLING) {
+			if(currentAction != FALLING) {
 				currentAction = FALLING;
 				animation.setFrames(sprites.get(FALLING));
 				animation.setDelay(100);
