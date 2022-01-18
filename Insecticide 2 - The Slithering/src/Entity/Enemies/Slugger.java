@@ -11,6 +11,9 @@ import javax.imageio.ImageIO;
 public class Slugger extends Enemy {
 
 	private BufferedImage[] sprites;
+	private int direction = 0;
+	private long startTime = System.currentTimeMillis();
+	
 
 	public Slugger(TileMap tm) {
 
@@ -63,27 +66,29 @@ public class Slugger extends Enemy {
 	}
 
 	private void getNextPosition() {
+		long elapsedTime = (System.currentTimeMillis() - startTime);
 
 		// movement
-		if(left) {
-			dx -= moveSpeed;
-			if(dx < -maxSpeed) {
-				dx = -maxSpeed;
-			}
-		}
-		else if(right) {
-			dx += moveSpeed;
-			if(dx > maxSpeed) {
-				dx = maxSpeed;
-			}
+		
+		//how many 4-second periods have elapsed?
+		long periods = (elapsedTime / 4000);
+		this.direction = (int) (periods % 2);
+		
 		
 
+		if (direction == 0) {
+			dx = moveSpeed;
+		}
+		else if (direction == 1) {	
+			dx = -moveSpeed;
+		}
+				
 			// falling
 			if(falling) {
 				dy += fallSpeed;
 			}
+			
 		}
-	}
 
 	public void update() {
 
