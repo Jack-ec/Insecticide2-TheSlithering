@@ -74,7 +74,6 @@ public class Slugger extends Enemy {
 		long periods = (elapsedTime / 4000);
 		this.direction = (int) (periods % 2);
 		
-		
 
 		if (direction == 0) {
 			dx = moveSpeed;
