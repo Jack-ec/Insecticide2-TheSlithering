@@ -132,7 +132,15 @@ public class Player extends MapObject {
 		
 	}
 	
-	public int getHealth() { return health; }
+	public int getHealth() { 
+		if (health == 0) {
+			System.exit(1);
+			return health;
+		}
+		else {
+			return health; 
+		}
+		}
 	public int getMaxHealth() { return maxHealth; }
 	public int getFire() { return fire; }
 	public int getMaxFire() { return maxFire; }
